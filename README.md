@@ -2,8 +2,6 @@
 
 **GetTicket Events** - A comprehensive Django-based platform for event management, ticketing, and reservations.
 
-![GetTicket Events Logo](gestion_even/static/img/logo.png)
-
 This Django project aims to develop a web application for the management and online reservation of events, this project caters to three main actors: the administrator, the organizer, and the customer. Each actor has specific functionalities and access levels within the application.
 
 ## Technology Stack
