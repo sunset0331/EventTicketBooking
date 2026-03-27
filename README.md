@@ -1,8 +1,83 @@
 # Event Management and Reservation Web Application
-<img width="942" alt="p1" src="https://github.com/SalahEddine-Ghannouch/GetTicket_Events_Django/assets/79339578/241bb844-1c45-4856-a1db-596ec8ec7bee">
-<img width="942" alt="p2" src="https://github.com/SalahEddine-Ghannouch/GetTicket_Events_Django/assets/79339578/8d1d02b6-900c-402f-b342-648acdb1a3d3">
+
+**GetTicket Events** - A comprehensive Django-based platform for event management, ticketing, and reservations.
+
+![GetTicket Events Logo](gestion_even/static/img/logo.png)
 
 This Django project aims to develop a web application for the management and online reservation of events, this project caters to three main actors: the administrator, the organizer, and the customer. Each actor has specific functionalities and access levels within the application.
+
+## Technology Stack
+
+### Backend
+- **Framework**: Django 4.2.28
+- **Python**: 3.12
+- **Database**: SQLite3
+- **ORM**: Django ORM
+
+### Frontend
+- **HTML5/CSS3**: Bootstrap 4
+- **JavaScript**: jQuery with custom event handling
+- **Rich Text Editor**: CKEditor 6.7.3
+- **Location Mapping**: Mapbox Location Field
+- **UI Components**: AdminLTE 3, Bootstrap Icons, FontAwesome
+
+### Key Libraries
+- **django-crispy-forms** (2.3) - Form styling and layout
+- **django-ckeditor** (6.7.3) - Rich text editor for event descriptions
+- **django-mapbox-location-field** (2.1.0) - Geolocation support
+- **Pillow** (10.3.0) - Image processing
+- **pytz** - Timezone handling
+
+### Development
+- **Virtual Environment**: Python 3.12 (`.venv312`)
+- **Package Manager**: pip
+- **Version Control**: Git
+
+## Features
+
+- Multi-actor role-based access control (Admin, Organizer, Customer)
+- Event creation, management, and categorization
+- Online ticket purchasing and reservation system
+- Real-time inventory management
+- Payment processing integration
+- User profiles and ticket history
+- Search and filtering capabilities
+- Responsive mobile-friendly design
+- Rich text editor for event descriptions
+- Location-based event mapping
+- User notification and preference management
+
+## Screenshots
+
+### Homepage & Hero Section
+![Homepage Hero](gestion_even/static/img/BG_HERO.jpg)
+
+### Event Thumbnails
+<div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+**Music Events**
+![Music Events](gestion_even/static/img/ev1.jpg)
+
+**Sports Events**
+![Sports Events](gestion_even/static/img/ev2.jpg)
+
+**Tech Events**
+![Tech Events](gestion_even/static/img/ev3.jpg)
+
+**Arts Events**
+![Arts Events](gestion_even/static/img/ev4.jpg)
+
+</div>
+
+### Sample Event Images
+
+![Music Festival](gestion_even/media/event_image/event_music.jpg)
+
+![Sports Tournament](gestion_even/media/event_image/event_sports.jpg)
+
+![Tech Conference](gestion_even/media/event_image/event_tech.jpg)
+
+![Art Exhibition](gestion_even/media/event_image/event_arts.jpg)
 
 ## Actors and Functionalities
 
@@ -44,14 +119,116 @@ Customers are the users of the application who are interested in discovering and
 
 - **Notification Management**: Customers can manage their notification preferences, allowing them to receive relevant updates and reminders about upcoming events, ticket availability, or any changes related to their reservations.
 
-## Installation and Setup
+## Installation & Setup
 
-To set up the project locally, please follow these steps:
+### Prerequisites
 
-1. Clone the project repository from [GitHub](https://github.com/SalahEddine-Ghannouch/GetTicket_Events_Django.git).
+- Python 3.12+
+- pip (Python package manager)
+- Virtual environment support
+- Git
 
-2. Install the required dependencies by running the command `pip install -r requirements.txt` in your terminal.
+### Quick Start
 
-4. Apply the database migrations using the command `python manage.py migrate`.
+1. Clone the repository
+   ```bash
+   cd GetTicket_Events_Django
+   ```
 
-5. Create a superuser account for the administrator.
+2. Create and activate virtual environment
+   ```bash
+   python3.12 -m venv .venv312
+   source .venv312/bin/activate
+   ```
+
+3. Install dependencies
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run migrations
+   ```bash
+   cd gestion_even
+   python manage.py migrate
+   ```
+
+5. Create superuser
+   ```bash
+   python manage.py createsuperuser
+   # Username: red
+   # Password: 123456
+   ```
+
+6. Seed sample events
+   ```bash
+   python manage.py shell < ../seed_events.py
+   ```
+
+7. Start development server
+   ```bash
+   python manage.py runserver 0.0.0.0:8000
+   ```
+
+8. Access the application
+   - Homepage: http://127.0.0.1:8000
+   - Admin Panel: http://127.0.0.1:8000/admin
+
+## Image Management
+
+### Image Locations
+
+**Static Images** (User Interface elements):
+- Path: `gestion_even/static/img/`
+- BG_HERO.jpg - Homepage hero background
+- logo.png - Application logo
+- add-to-cart.png - Shopping cart icon
+- userProfile.png - User profile avatar placeholder
+- ev1.jpg, ev2.jpg, ev3.jpg, ev4.jpg - Event thumbnails
+- avatar04.png, avatar5.png - User avatar images
+- utilisateur.png - Generic user icon
+- favicon.png - Browser tab favicon
+
+**Event Images** (User-uploaded promotional content):
+- Path: `gestion_even/media/event_image/`
+- User-uploaded event promotional images
+- Automatically organized by event
+- Sample images: event_music.jpg, event_sports.jpg, event_tech.jpg, event_arts.jpg
+
+**Event Category Images**:
+- Path: `gestion_even/media/event_category/`
+- Category-specific images
+
+### How to Replace Images
+
+**Static Images** (UI elements):
+- Replace files directly in `gestion_even/static/img/`
+- Recommended formats: PNG (transparent backgrounds), JPG (photos)
+- Image size recommendations:
+  - Hero background: 1920x1080px or larger
+  - Logo: 300x100px
+  - Thumbnails: 400x300px
+  - Icons: 64x64px
+
+**Event Images** (User uploads):
+- Upload through Django admin panel: `http://127.0.0.1:8000/admin/events/event/`
+- Or manually place images in `gestion_even/media/event_image/`
+
+**Generate Sample Images**:
+```bash
+python generate_images.py
+```
+
+## Database Models
+
+The application uses the following core models:
+
+- **Event**: Event details, pricing, scheduling, location, description
+- **EventCategory**: Event categorization (Music, Sports, Technology, Arts, Business)
+- **Ticket**: Ticket types, pricing, and availability tracking
+- **EventImage**: Associated event promotional imagery
+- **Payments**: Payment records and transaction history
+- **EventMember**: User attendance and participation tracking
+- **User**: User profiles with role-based access (Admin, Organizer, Customer)
+- **EventAgenda**: Event agenda and timeline
+- **EventJobCategoryLinking**: Linking events to job categories
+

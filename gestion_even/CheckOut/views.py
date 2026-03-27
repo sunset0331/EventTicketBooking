@@ -21,18 +21,18 @@ def Check(request,object_id):
                     eventTicket = Ticket.objects.get(name = eventName)
                     eventTicket.nbr_ticket = eventTicket.nbr_ticket - int(quantity)
                     if eventTicket.nbr_ticket - int(quantity) < 0:
-                        events = Event.objects.select_related('eventimage').get(status = 'completed', id = object_id)
+                        events = Event.objects.select_related('eventimage').get(status = 'active', id = object_id)
                         messages.info(request, 'We are sold out of tickets.')
                         return render(request, 'CheckOut.html', {'event':events, 'now':now})
                     else:
                         eventTicket.save()
                         pay = Payments.objects.create(username=str(request.user),Holder=Holder,eventName=eventName,TicketNumber=ticket_number,Quantity=quantity,CardNumber=cardNumber,ExperationMonth=cardMonth,ExperationYear=cardYear,CVV=cardCVV)
                         pay.save()
-                        events = Event.objects.select_related('eventimage').get(status = 'completed', id = object_id)
+                        events = Event.objects.select_related('eventimage').get(status = 'active', id = object_id)
                         messages.info(request, 'You Just Bought Your Ticket!')
                         return render(request, 'CheckOut.html', {'event':events, 'now':now})
                 else:
-                    events = Event.objects.select_related('eventimage').get(status = 'completed', id = object_id)
+                    events = Event.objects.select_related('eventimage').get(status = 'active', id = object_id)
                     return render(request, 'CheckOut.html', {'event':events, 'now':now})
         else:
             messages.info(request, 'You need to logIn before buying a ticket ')
