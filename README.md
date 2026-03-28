@@ -67,16 +67,6 @@ This Django project aims to develop a web application for the management and onl
 
 </div>
 
-### Sample Event Images
-
-![Music Festival](gestion_even/media/event_image/event_music.jpg)
-
-![Sports Tournament](gestion_even/media/event_image/event_sports.jpg)
-
-![Tech Conference](gestion_even/media/event_image/event_tech.jpg)
-
-![Art Exhibition](gestion_even/media/event_image/event_arts.jpg)
-
 ## Actors and Functionalities
 
 ### Administrator
