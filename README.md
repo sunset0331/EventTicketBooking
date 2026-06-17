@@ -1,4 +1,4 @@
-# Event Management and Reservation Web Application
+# GetTicket: Event Management and Reservation Web Application
 
 **GetTicket Events** - A comprehensive Django-based platform for event management, ticketing, and reservations.
 
